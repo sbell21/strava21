@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Region_4_Boundary_1.js"></script>
+        <script src="data/September_2.js"></script>
+        <script src="data/August_3.js"></script>
+        <script src="data/July_4.js"></script>
+        <script src="data/June_5.js"></script>
+        <script src="data/May_6.js"></script>
+        <script src="data/April_7.js"></script>
+        <script src="data/March_8.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[36.87995856908876,-114.42478558269079],[40.01288353150016,-108.71531699730457]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_ESRIGraylight_0');
+        map.getPane('pane_ESRIGraylight_0').style.zIndex = 400;
+        var layer_ESRIGraylight_0 = L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+            pane: 'pane_ESRIGraylight_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 20
+        });
+        layer_ESRIGraylight_0;
+        map.addLayer(layer_ESRIGraylight_0);
+        function pop_Region_4_Boundary_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LAYER_ID'] !== null ? autolinker.link(feature.properties['LAYER_ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ID'] !== null ? autolinker.link(feature.properties['ID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['DISTRICT'] !== null ? autolinker.link(feature.properties['DISTRICT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NAME'] !== null ? autolinker.link(feature.properties['NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PHONE'] !== null ? autolinker.link(feature.properties['PHONE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WEBSITE'] !== null ? autolinker.link(feature.properties['WEBSITE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PERMITS_PH'] !== null ? autolinker.link(feature.properties['PERMITS_PH'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['PERMITS_WE'] !== null ? autolinker.link(feature.properties['PERMITS_WE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ADDRESS'] !== null ? autolinker.link(feature.properties['ADDRESS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOM_AREA'] !== null ? autolinker.link(feature.properties['GEOM_AREA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['GEOM_LENGT'] !== null ? autolinker.link(feature.properties['GEOM_LENGT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['REGION'] !== null ? autolinker.link(feature.properties['REGION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Leng'] !== null ? autolinker.link(feature.properties['SHAPE_Leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SHAPE_Area'] !== null ? autolinker.link(feature.properties['SHAPE_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Region_4_Boundary_1_0() {
+            return {
+                pane: 'pane_Region_4_Boundary_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_Region_4_Boundary_1');
+        map.getPane('pane_Region_4_Boundary_1').style.zIndex = 401;
+        map.getPane('pane_Region_4_Boundary_1').style['mix-blend-mode'] = 'normal';
+        var layer_Region_4_Boundary_1 = new L.geoJson(json_Region_4_Boundary_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_Region_4_Boundary_1',
+            layerName: 'layer_Region_4_Boundary_1',
+            pane: 'pane_Region_4_Boundary_1',
+            onEachFeature: pop_Region_4_Boundary_1,
+            style: style_Region_4_Boundary_1_0,
+        });
+        bounds_group.addLayer(layer_Region_4_Boundary_1);
+        map.addLayer(layer_Region_4_Boundary_1);
+        function pop_September_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['edgeUID'] !== null ? autolinker.link(feature.properties['edgeUID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fml_cnt'] !== null ? autolinker.link(feature.properties['fml_cnt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_September_2_0(feature) {
+            if (feature.properties['fml_cnt'] >= 5.000000 && feature.properties['fml_cnt'] <= 40.000000 ) {
+                return {
+                pane: 'pane_September_2',
+                opacity: 1,
+                color: 'rgba(255,96,84,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 40.000000 && feature.properties['fml_cnt'] <= 115.000000 ) {
+                return {
+                pane: 'pane_September_2',
+                opacity: 1,
+                color: 'rgba(255,96,84,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 115.000000 && feature.properties['fml_cnt'] <= 255.000000 ) {
+                return {
+                pane: 'pane_September_2',
+                opacity: 1,
+                color: 'rgba(255,96,84,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 255.000000 && feature.properties['fml_cnt'] <= 660.000000 ) {
+                return {
+                pane: 'pane_September_2',
+                opacity: 1,
+                color: 'rgba(255,96,84,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 11.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+        }
+        map.createPane('pane_September_2');
+        map.getPane('pane_September_2').style.zIndex = 402;
+        map.getPane('pane_September_2').style['mix-blend-mode'] = 'normal';
+        var layer_September_2 = new L.geoJson(json_September_2, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_September_2',
+            layerName: 'layer_September_2',
+            pane: 'pane_September_2',
+            onEachFeature: pop_September_2,
+            style: style_September_2_0,
+        });
+        bounds_group.addLayer(layer_September_2);
+        function pop_August_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['edgeUID'] !== null ? autolinker.link(feature.properties['edgeUID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fml_cnt'] !== null ? autolinker.link(feature.properties['fml_cnt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_August_3_0(feature) {
+            if (feature.properties['fml_cnt'] >= 5.000000 && feature.properties['fml_cnt'] <= 35.000000 ) {
+                return {
+                pane: 'pane_August_3',
+                opacity: 1,
+                color: 'rgba(184,133,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 35.000000 && feature.properties['fml_cnt'] <= 110.000000 ) {
+                return {
+                pane: 'pane_August_3',
+                opacity: 1,
+                color: 'rgba(184,133,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 110.000000 && feature.properties['fml_cnt'] <= 300.000000 ) {
+                return {
+                pane: 'pane_August_3',
+                opacity: 1,
+                color: 'rgba(184,133,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 300.000000 && feature.properties['fml_cnt'] <= 715.000000 ) {
+                return {
+                pane: 'pane_August_3',
+                opacity: 1,
+                color: 'rgba(184,133,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 11.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+        }
+        map.createPane('pane_August_3');
+        map.getPane('pane_August_3').style.zIndex = 403;
+        map.getPane('pane_August_3').style['mix-blend-mode'] = 'normal';
+        var layer_August_3 = new L.geoJson(json_August_3, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_August_3',
+            layerName: 'layer_August_3',
+            pane: 'pane_August_3',
+            onEachFeature: pop_August_3,
+            style: style_August_3_0,
+        });
+        bounds_group.addLayer(layer_August_3);
+        function pop_July_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['edgeUID'] !== null ? autolinker.link(feature.properties['edgeUID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fml_cnt'] !== null ? autolinker.link(feature.properties['fml_cnt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_July_4_0(feature) {
+            if (feature.properties['fml_cnt'] >= 5.000000 && feature.properties['fml_cnt'] <= 25.000000 ) {
+                return {
+                pane: 'pane_July_4',
+                opacity: 1,
+                color: 'rgba(63,140,191,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 25.000000 && feature.properties['fml_cnt'] <= 80.000000 ) {
+                return {
+                pane: 'pane_July_4',
+                opacity: 1,
+                color: 'rgba(63,140,191,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 80.000000 && feature.properties['fml_cnt'] <= 190.000000 ) {
+                return {
+                pane: 'pane_July_4',
+                opacity: 1,
+                color: 'rgba(63,140,191,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 190.000000 && feature.properties['fml_cnt'] <= 405.000000 ) {
+                return {
+                pane: 'pane_July_4',
+                opacity: 1,
+                color: 'rgba(63,140,191,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 11.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+        }
+        map.createPane('pane_July_4');
+        map.getPane('pane_July_4').style.zIndex = 404;
+        map.getPane('pane_July_4').style['mix-blend-mode'] = 'normal';
+        var layer_July_4 = new L.geoJson(json_July_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_July_4',
+            layerName: 'layer_July_4',
+            pane: 'pane_July_4',
+            onEachFeature: pop_July_4,
+            style: style_July_4_0,
+        });
+        bounds_group.addLayer(layer_July_4);
+        function pop_June_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['edgeUID'] !== null ? autolinker.link(feature.properties['edgeUID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fml_cnt'] !== null ? autolinker.link(feature.properties['fml_cnt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_June_5_0(feature) {
+            if (feature.properties['fml_cnt'] >= 5.000000 && feature.properties['fml_cnt'] <= 30.000000 ) {
+                return {
+                pane: 'pane_June_5',
+                opacity: 1,
+                color: 'rgba(176,11,27,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 30.000000 && feature.properties['fml_cnt'] <= 90.000000 ) {
+                return {
+                pane: 'pane_June_5',
+                opacity: 1,
+                color: 'rgba(176,11,27,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 90.000000 && feature.properties['fml_cnt'] <= 205.000000 ) {
+                return {
+                pane: 'pane_June_5',
+                opacity: 1,
+                color: 'rgba(176,11,27,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 205.000000 && feature.properties['fml_cnt'] <= 510.000000 ) {
+                return {
+                pane: 'pane_June_5',
+                opacity: 1,
+                color: 'rgba(176,11,27,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 11.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+        }
+        map.createPane('pane_June_5');
+        map.getPane('pane_June_5').style.zIndex = 405;
+        map.getPane('pane_June_5').style['mix-blend-mode'] = 'normal';
+        var layer_June_5 = new L.geoJson(json_June_5, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_June_5',
+            layerName: 'layer_June_5',
+            pane: 'pane_June_5',
+            onEachFeature: pop_June_5,
+            style: style_June_5_0,
+        });
+        bounds_group.addLayer(layer_June_5);
+        function pop_May_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['edgeUID'] !== null ? autolinker.link(feature.properties['edgeUID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fml_cnt'] !== null ? autolinker.link(feature.properties['fml_cnt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_May_6_0(feature) {
+            if (feature.properties['fml_cnt'] >= 5.000000 && feature.properties['fml_cnt'] <= 40.000000 ) {
+                return {
+                pane: 'pane_May_6',
+                opacity: 1,
+                color: 'rgba(142,222,95,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 40.000000 && feature.properties['fml_cnt'] <= 120.000000 ) {
+                return {
+                pane: 'pane_May_6',
+                opacity: 1,
+                color: 'rgba(142,222,95,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 120.000000 && feature.properties['fml_cnt'] <= 275.000000 ) {
+                return {
+                pane: 'pane_May_6',
+                opacity: 1,
+                color: 'rgba(142,222,95,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 275.000000 && feature.properties['fml_cnt'] <= 640.000000 ) {
+                return {
+                pane: 'pane_May_6',
+                opacity: 1,
+                color: 'rgba(142,222,95,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 11.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+        }
+        map.createPane('pane_May_6');
+        map.getPane('pane_May_6').style.zIndex = 406;
+        map.getPane('pane_May_6').style['mix-blend-mode'] = 'normal';
+        var layer_May_6 = new L.geoJson(json_May_6, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_May_6',
+            layerName: 'layer_May_6',
+            pane: 'pane_May_6',
+            onEachFeature: pop_May_6,
+            style: style_May_6_0,
+        });
+        bounds_group.addLayer(layer_May_6);
+        function pop_April_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['edgeUID'] !== null ? autolinker.link(feature.properties['edgeUID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fml_cnt'] !== null ? autolinker.link(feature.properties['fml_cnt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_April_7_0(feature) {
+            if (feature.properties['fml_cnt'] >= 5.000000 && feature.properties['fml_cnt'] <= 35.000000 ) {
+                return {
+                pane: 'pane_April_7',
+                opacity: 1,
+                color: 'rgba(255,175,84,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 35.000000 && feature.properties['fml_cnt'] <= 105.000000 ) {
+                return {
+                pane: 'pane_April_7',
+                opacity: 1,
+                color: 'rgba(255,175,84,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 105.000000 && feature.properties['fml_cnt'] <= 230.000000 ) {
+                return {
+                pane: 'pane_April_7',
+                opacity: 1,
+                color: 'rgba(255,175,84,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 230.000000 && feature.properties['fml_cnt'] <= 485.000000 ) {
+                return {
+                pane: 'pane_April_7',
+                opacity: 1,
+                color: 'rgba(255,175,84,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 11.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+        }
+        map.createPane('pane_April_7');
+        map.getPane('pane_April_7').style.zIndex = 407;
+        map.getPane('pane_April_7').style['mix-blend-mode'] = 'normal';
+        var layer_April_7 = new L.geoJson(json_April_7, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_April_7',
+            layerName: 'layer_April_7',
+            pane: 'pane_April_7',
+            onEachFeature: pop_April_7,
+            style: style_April_7_0,
+        });
+        bounds_group.addLayer(layer_April_7);
+        function pop_March_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['edgeUID'] !== null ? autolinker.link(feature.properties['edgeUID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fml_cnt'] !== null ? autolinker.link(feature.properties['fml_cnt'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_March_8_0(feature) {
+            if (feature.properties['fml_cnt'] >= 5.000000 && feature.properties['fml_cnt'] <= 30.000000 ) {
+                return {
+                pane: 'pane_March_8',
+                opacity: 1,
+                color: 'rgba(19,12,110,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 30.000000 && feature.properties['fml_cnt'] <= 85.000000 ) {
+                return {
+                pane: 'pane_March_8',
+                opacity: 1,
+                color: 'rgba(19,12,110,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 85.000000 && feature.properties['fml_cnt'] <= 195.000000 ) {
+                return {
+                pane: 'pane_March_8',
+                opacity: 1,
+                color: 'rgba(19,12,110,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 8.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+            if (feature.properties['fml_cnt'] >= 195.000000 && feature.properties['fml_cnt'] <= 395.000000 ) {
+                return {
+                pane: 'pane_March_8',
+                opacity: 1,
+                color: 'rgba(19,12,110,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 11.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+            }
+        }
+        map.createPane('pane_March_8');
+        map.getPane('pane_March_8').style.zIndex = 408;
+        map.getPane('pane_March_8').style['mix-blend-mode'] = 'normal';
+        var layer_March_8 = new L.geoJson(json_March_8, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_March_8',
+            layerName: 'layer_March_8',
+            pane: 'pane_March_8',
+            onEachFeature: pop_March_8,
+            style: style_March_8_0,
+        });
+        bounds_group.addLayer(layer_March_8);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'March<br /><table><tr><td style="text-align: center;"><img src="legend/March_8_5300.png" /></td><td>5 - 30</td></tr><tr><td style="text-align: center;"><img src="legend/March_8_30851.png" /></td><td>30 - 85</td></tr><tr><td style="text-align: center;"><img src="legend/March_8_851952.png" /></td><td>85 - 195</td></tr><tr><td style="text-align: center;"><img src="legend/March_8_1953953.png" /></td><td>195 - 395</td></tr></table>': layer_March_8,'April<br /><table><tr><td style="text-align: center;"><img src="legend/April_7_5350.png" /></td><td>5 - 35</td></tr><tr><td style="text-align: center;"><img src="legend/April_7_351051.png" /></td><td>35 - 105</td></tr><tr><td style="text-align: center;"><img src="legend/April_7_1052302.png" /></td><td>105 - 230</td></tr><tr><td style="text-align: center;"><img src="legend/April_7_2304853.png" /></td><td>230 - 485</td></tr></table>': layer_April_7,'May<br /><table><tr><td style="text-align: center;"><img src="legend/May_6_5400.png" /></td><td>5 - 40</td></tr><tr><td style="text-align: center;"><img src="legend/May_6_401201.png" /></td><td>40 - 120</td></tr><tr><td style="text-align: center;"><img src="legend/May_6_1202752.png" /></td><td>120 - 275</td></tr><tr><td style="text-align: center;"><img src="legend/May_6_2756403.png" /></td><td>275 - 640</td></tr></table>': layer_May_6,'June<br /><table><tr><td style="text-align: center;"><img src="legend/June_5_5300.png" /></td><td>5 - 30</td></tr><tr><td style="text-align: center;"><img src="legend/June_5_30901.png" /></td><td>30 - 90</td></tr><tr><td style="text-align: center;"><img src="legend/June_5_902052.png" /></td><td>90 - 205</td></tr><tr><td style="text-align: center;"><img src="legend/June_5_2055103.png" /></td><td>205 - 510</td></tr></table>': layer_June_5,'July<br /><table><tr><td style="text-align: center;"><img src="legend/July_4_5250.png" /></td><td>5 - 25</td></tr><tr><td style="text-align: center;"><img src="legend/July_4_25801.png" /></td><td>25 - 80</td></tr><tr><td style="text-align: center;"><img src="legend/July_4_801902.png" /></td><td>80 - 190</td></tr><tr><td style="text-align: center;"><img src="legend/July_4_1904053.png" /></td><td>190 - 405</td></tr></table>': layer_July_4,'August<br /><table><tr><td style="text-align: center;"><img src="legend/August_3_5350.png" /></td><td>5 - 35</td></tr><tr><td style="text-align: center;"><img src="legend/August_3_351101.png" /></td><td>35 - 110</td></tr><tr><td style="text-align: center;"><img src="legend/August_3_1103002.png" /></td><td>110 - 300</td></tr><tr><td style="text-align: center;"><img src="legend/August_3_3007153.png" /></td><td>300 - 715</td></tr></table>': layer_August_3,'September<br /><table><tr><td style="text-align: center;"><img src="legend/September_2_5400.png" /></td><td>5 - 40</td></tr><tr><td style="text-align: center;"><img src="legend/September_2_401151.png" /></td><td>40 - 115</td></tr><tr><td style="text-align: center;"><img src="legend/September_2_1152552.png" /></td><td>115 - 255</td></tr><tr><td style="text-align: center;"><img src="legend/September_2_2556603.png" /></td><td>255 - 660</td></tr></table>': layer_September_2,'<img src="legend/Region_4_Boundary_1.png" /> Region_4_Boundary': layer_Region_4_Boundary_1,"ESRI Gray (light)": layer_ESRIGraylight_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
